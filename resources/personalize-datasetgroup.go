@@ -18,6 +18,9 @@ func init() {
 		Scope:    nuke.Account,
 		Resource: &PersonalizeDatasetGroup{},
 		Lister:   &PersonalizeDatasetGroupLister{},
+		DependsOn: []string{
+			PersonalizeDatasetResource,
+		},
 	})
 }
 
