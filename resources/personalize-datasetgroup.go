@@ -7,7 +7,6 @@ import (
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
-	// "github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
 
 const PersonalizeDatasetGroupResource = "PersonalizeDatasetGroup"
