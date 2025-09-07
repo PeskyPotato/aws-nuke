@@ -4,9 +4,11 @@ import (
 	"context"
 
 	"github.com/aws/aws-sdk-go/service/personalize"
-	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
+
 	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
+
+	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
 
 const PersonalizeSchemaResource = "PersonalizeSchema"
@@ -39,7 +41,7 @@ func (l *PersonalizeSchemaLister) List(_ context.Context, o interface{}) ([]reso
 	for _, schema := range resp.Schemas {
 		resources = append(resources, &PersonalizeSchema{
 			svc: svc,
-			id:  schema.SchemaArn,
+			ID:  schema.SchemaArn,
 		})
 	}
 	return resources, nil
@@ -47,18 +49,18 @@ func (l *PersonalizeSchemaLister) List(_ context.Context, o interface{}) ([]reso
 
 type PersonalizeSchema struct {
 	svc *personalize.Personalize
-	id  *string
+	ID  *string
 }
 
 func (r *PersonalizeSchema) String() string {
-	return *r.id
+	return *r.ID
 }
 
-func (p *PersonalizeSchema) Remove(_ context.Context) error {
+func (r *PersonalizeSchema) Remove(_ context.Context) error {
 	params := &personalize.DeleteSchemaInput{
-		SchemaArn: p.id,
+		SchemaArn: r.ID,
 	}
-	_, err := p.svc.DeleteSchema(params)
+	_, err := r.svc.DeleteSchema(params)
 	if err != nil {
 		return err
 	}
